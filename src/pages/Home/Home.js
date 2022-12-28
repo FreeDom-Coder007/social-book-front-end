@@ -3,12 +3,12 @@ import { AuthContext } from '../../Authentication/AuthProvider';
 import { FaPhotoVideo } from "react-icons/fa";
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
+import Media from '../Media/Media';
 
 
 const Home = () => {
     const {user} = useContext(AuthContext)
     const {register, handleSubmit} = useForm()
-
 
     const handlePost = (data) => { 
         const imageURL = data.photo[0]
@@ -28,7 +28,8 @@ const Home = () => {
 
                 const status = data.status
                 const photo = image
-                const post = {status, photo} 
+                const date = new Date()
+                const post = {status, photo, date} 
 
                 fetch('http://localhost:5000/post', {
                     method: 'POST',
@@ -77,7 +78,7 @@ const Home = () => {
 
              <form onSubmit={handleSubmit(handlePost)}>
                <div>
-                <textarea {...register("status")} className="textarea w-full bg-slate-300 text-gray-600 font-medium text-2xl placeholder:text-gray-500 placeholder:font-medium" placeholder={`What's on your mind, ${user?.displayName}?`}></textarea>
+                <textarea rows="2" {...register("status")} className="textarea w-full bg-slate-300 text-gray-600 font-medium text-2xl placeholder:text-gray-500 placeholder:font-medium" placeholder={`What's on your mind, ${user?.displayName}?`}></textarea>
                </div>
                <div className='border border-gray-800 rounded-lg'>
                 <label className="label rounded-lg text-white bg-slate-300 text-center">
@@ -93,6 +94,7 @@ const Home = () => {
            </div>
          </div>
         </div>
+        <Media/>
         </React.Fragment>
     )
 }

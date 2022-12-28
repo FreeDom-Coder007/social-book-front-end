@@ -25,7 +25,7 @@ const Navbar = () => {
            <ul tabIndex={0} className="menu menu-compact font-medium dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
              <li><Link to="/media">Media</Link></li>
              <li><Link>Message</Link></li>
-             <li><Link>About</Link></li> 
+             <li><Link to="/about">About</Link></li> 
            </ul>
           </div>
           <Link to='/' className="btn btn-ghost normal-case text-xl"><img className='w-10' src="https://www.svgrepo.com/show/437508/bolt.svg" alt="logo"/><span className='font-extrabold'>Social Book</span></Link>
@@ -34,7 +34,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1 font-medium">
            <li><Link to="/media">Media</Link></li>
            <li><Link>Message</Link></li>
-           <li><Link>About</Link></li>
+           <li><Link to="/about">About</Link></li>
           </ul>
          </div>
          <div className="navbar-end"> 
@@ -47,7 +47,7 @@ const Navbar = () => {
             <ul tabIndex={0} className="menu menu-compact font-medium dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
              <li><Link to="/media"><MdOutlinePermMedia/>Media</Link></li>
              <li><Link><BiMessageAltDetail/>Message</Link></li>
-             <li><Link><AiOutlineInfoCircle/>About</Link></li>
+             <li><Link to="/about"><AiOutlineInfoCircle/>About</Link></li>
              <li><button onClick={handleLogout}><IoMdLogOut/>Log out</button></li>
            </ul> 
            </div> 
