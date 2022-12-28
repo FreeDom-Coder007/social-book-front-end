@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
+import Media from "../pages/Media/Media";
 import SignUp from "../pages/SignUp/SignUp";
 import RoutesProtector from "./RoutesProtector";
 
@@ -13,7 +14,11 @@ const router = createBrowserRouter([
           {
             path: '/',
             element: <Home/>
-          }
+          },
+          {
+            path: '/media',
+            element: <Media/>
+          } 
        ] 
     },
     {

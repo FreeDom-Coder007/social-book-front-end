@@ -6,7 +6,7 @@ import { AuthContext } from '../../Authentication/AuthProvider';
 
 const SignUp = () => {
     const {register, handleSubmit, formState: {errors}} = useForm()
-    const {createUser} = useContext(AuthContext)
+    const {createUser, updateUser} = useContext(AuthContext)
     const [firebaseError, setFirebaseError] = useState(null)
     const navigate = useNavigate()
 
@@ -16,7 +16,15 @@ const SignUp = () => {
         createUser(data.email, data.password)
         .then(result => {
             const user = result.user
-            console.log(user)
+            console.log(user) 
+            const userInfo = { 
+                displayName: data.name, 
+                photoURL: data.photo 
+            }
+            updateUser(userInfo)
+            .then(() => {})
+            .catch(err => console.log(err.message))
+
             navigate('/')
             toast.success('Congratulations! Welcome to Social Book')
         })
@@ -43,6 +51,11 @@ const SignUp = () => {
                       <label htmlFor='name' className="block mb-2 text-sm font-medium text-gray-900">Name</label>
                       <input {...register("name", {required: "Name is required"})} type="text" className="bg-slate-200 border border-gray-300 text-gray-900 dark:text-gray-900 dark:placeholder-gray-400 placeholder:font-medium sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your Name"/>
                       {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                  </div>
+                  <div>
+                      <label htmlFor='photo' className="block mb-2 text-sm font-medium text-gray-900">Photo URL</label>
+                      <input {...register("photo", {required: "photo is required"})} type="text" className="bg-slate-200 border border-gray-300 text-gray-900 dark:text-gray-900 dark:placeholder-gray-400 placeholder:font-medium sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Photo URL"/>
+                      {errors.photo && <p className='text-red-500'>{errors.photo.message}</p>}
                   </div>
                   <div>
                       <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Email</label>
